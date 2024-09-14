@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getEventAttendees, sendEventReminder } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
+import '../App.css'
 
 const Attendees = () => {
     const { id } = useParams();

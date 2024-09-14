@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getEventById } from '../services/api';
+import '../App.css'
 
 const EventDetail = () => {
   const { id } = useParams();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createEvent } from '../services/api';
+import '../App.css'
 
 const CreateEvent = () => {
   const [title, setTitle] = useState('');

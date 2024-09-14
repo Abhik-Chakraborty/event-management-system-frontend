@@ -24,11 +24,6 @@ export const loginUser = async (email, password) => {
   return response.data;
 };
 
-export const signupUser = async (name, email, password) => {
-  const response = await axios.post(`${API_URL}/auth/signup`, { name, email, password });
-  return response.data;
-};
-
 export const createEvent = async (eventData) => {
   const token = localStorage.getItem('token');
   const response = await axios.post(`${API_URL}/events`, eventData, {
