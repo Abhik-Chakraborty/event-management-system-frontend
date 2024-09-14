@@ -9,6 +9,7 @@ const Header = () => {
     <header>
       <nav>
         <Link to="/">Events</Link>
+        {user && <Link to="/create-event">Create Event</Link>}
         {user ? (
           <>
             <span>Welcome, {user.name}</span>

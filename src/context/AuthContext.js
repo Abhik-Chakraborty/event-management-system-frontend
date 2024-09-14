@@ -18,6 +18,11 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     const data = await loginUser(email, password);
     setUser(data.user);
+
+    if (data.user.reminder) {
+      alert('Reminder: You have an upcoming event. Check your events.');
+    }
+
     localStorage.setItem('user', JSON.stringify(data.user));
     localStorage.setItem('token', data.token);
     navigate('/');
