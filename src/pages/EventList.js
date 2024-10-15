@@ -51,30 +51,31 @@ const EventList = () => {
           </tr>
         </thead>
 
-     
 
-      {events.map((event) => (
-        <tr key={event._id}>
-          <td>{event.title}</td>
-          <td>{event.description}</td>
-          <td>{new Date(event.date).toLocaleDateString()}</td>
-          <td>{event.time}</td>
-          <td>{event.attendees.length}</td>
-          <td>
-            {user.role === 'admin' && (
-              <Link to={`/events/${event._id}/attendees`}>
-                <button>View Attendees</button>
-              </Link>
-            )}
-            {user && <button onClick={() => handleRSVP(event._id)}>RSVP</button>}
-            {isAdmin && (
-              <button onClick={() => handleDelete(event._id)}>Delete Event</button>
-            )}
-          </td>
-        </tr>
 
-      ))}
-       </table>
+        <tbody>
+          {events.map((event) => (
+            <tr key={event._id}>
+              <td>{event.title}</td>
+              <td>{event.description}</td>
+              <td>{new Date(event.date).toLocaleDateString()}</td>
+              <td>{event.time}</td>
+              <td>{event.attendees.length}</td>
+              <td>
+                {user && user.role === 'admin' && (
+                  <Link to={`/events/${event._id}/attendees`}>
+                    <button>View Attendees</button>
+                  </Link>
+                )}
+                {user && <button onClick={() => handleRSVP(event._id)}>RSVP</button>}
+                {isAdmin && (
+                  <button onClick={() => handleDelete(event._id)}>Delete Event</button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
+  /* background-color: #002244; */
+  background-color: black;
+  color: white;
 }
 
 header {
@@ -34,3 +37,104 @@ form input {
   margin: 5px 0;
   padding: 10px;
 }
+/* Styling of card login page*/
+/* Center the card */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+/* Style the card */
+.login-card {
+  background-color: rgb(35, 29, 29); /*Color of the card*/
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Style the inputs and button */
+.login-card input {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #261818;
+  border-radius: 5px;
+}
+
+.login-card button {
+  width: 94%;
+  padding: 10px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/*end of login syling */
+
+/*Header*/
+/* Header styles */
+header {
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: center; /* Center all items horizontally */
+  align-items: center;
+}
+
+/* Container for navigation */
+nav {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+/* Styles for links and buttons */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 10px; /* Equal margin on both sides for spacing */
+}
+
+nav a:hover {
+  color: #f0f0f0; /* Lighten link color on hover */
+  font-weight: bold;
+}
+
+/* Button styles */
+button, .button-link {
+  background-color: #154982; /* Blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px; /* Equal margin on both sides for spacing */
+  text-decoration: none; /* No underline on links */
+  display: inline-block;
+  font-weight: bold;
+}
+
+button:hover, .button-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Welcome text */
+span {
+  margin: 0 10px; /* Equal margin on both sides for spacing */
+  font-size: 18px;
+}
+
+
+
