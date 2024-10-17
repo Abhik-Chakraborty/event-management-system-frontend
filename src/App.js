@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CreateEvent from './pages/CreateEvent';
 import Unauthorized from './pages/Unauthorized';
 import Attendees from './components/Attendees';
+import Register from './pages/Register';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/" element={<EventList />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} /> {/* Add Register Route */}
           <Route path="/protected" element={<PrivateRoute><EventList /></PrivateRoute>} />
           <Route path="/create-event" element={
             <PrivateRoute allowedRoles={['admin']}>

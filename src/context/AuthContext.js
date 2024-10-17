@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/api';
+import { loginUser, registerUser } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
+  //login function 
   const login = async (email, password) => {
     const data = await loginUser(email, password);
     setUser(data.user);
@@ -27,7 +28,20 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', data.token);
     navigate('/');
   };
+  // Register function
+  const register = async (name, email, password) => {
+    try {
+      const data = await registerUser(name, email, password); // Call the backend API to register the user
+      setUser(data.user); // Set the registered user in the context
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('token', data.token);
+      navigate('/'); // Navigate to the home page or dashboard after registration
+    } catch (error) {
+      console.error('Registration failed', error);
+    }
+  };
 
+  // logout function
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
@@ -36,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {!loading && children}
     </AuthContext.Provider>
   );

@@ -24,6 +24,16 @@ export const loginUser = async (email, password) => {
   return response.data;
 };
 
+export const registerUser = async (name, email, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/users/register`, { name, email, password });
+    return response.data;
+  } catch (error) {
+    console.error('Error registering user:', error);
+    throw error;
+  }
+};
+
 export const createEvent = async (eventData) => {
   const token = localStorage.getItem('token');
   const response = await axios.post(`${API_URL}/events`, eventData, {

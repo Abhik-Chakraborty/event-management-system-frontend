@@ -136,5 +136,48 @@ span {
   font-size: 18px;
 }
 
+/* Styling for the register card page */
+/* Center the card */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+/* Style the card */
+.register-card {
+  background-color: rgb(35, 29, 29); /*Color of the card*/
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Style the inputs and button */
+.register-card input {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #261818;
+  border-radius: 5px;
+}
+
+.register-card button {
+  width: 94%;
+  padding: 10px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.register-card button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
 
 

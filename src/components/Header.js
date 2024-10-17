@@ -17,7 +17,11 @@ const Header = () => {
             <button onClick={logout}>Logout</button>
           </>
         ) : (
+          <>
           <Link className="button-link" to="/login">Login</Link>
+          <Link className="button-link" to="/register">Register</Link>
+          </>
+          
         )}
       </nav>
     </header>
