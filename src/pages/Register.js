@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { User, Mail, Lock } from 'lucide-react';
 import '../App.css';
 
 const Register = () => {
@@ -36,34 +37,63 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-card">
-        <h1>Register</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
-            required
-          />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Register</button>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1 className="auth-title">Create Account</h1>
+        {error && <div className="error-message">{error}</div>}
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your full name"
+                className="pl-10"
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="pl-10"
+                required
+              />
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Create a password"
+                className="pl-10"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" className="auth-button">
+            Create Account
+          </button>
         </form>
-        {error && <p className="error-message">{error}</p>}
+        <div className="auth-links">
+          Already have an account? <Link to="/login">Sign in</Link>
+        </div>
       </div>
     </div>
   );
