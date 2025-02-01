@@ -24,9 +24,12 @@ export const loginUser = async (email, password) => {
   return response.data;
 };
 
-export const registerUser = async (name, email, password) => {
+export const registerUser = async (name, email, password, isAdmin) => {
+  console.log('api isAdmin:', isAdmin);
+
+  const endpoint = isAdmin ? '/admin/register' : '/users/register';
   try {
-    const response = await axios.post(`${API_URL}/users/register`, { name, email, password });
+    const response = await axios.post(`${API_URL}${endpoint}`, { name, email, password });
     return response.data;
   } catch (error) {
     console.error('Error registering user:', error);

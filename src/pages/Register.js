@@ -1,31 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { User, Mail, Lock } from 'lucide-react';
+import { User, Mail, Lock, Shield } from 'lucide-react';
 import '../App.css';
+import { useAuth } from '../context/AuthContext';
+
 
 const Register = () => {
+  const { register } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+
   const handleSubmit = async (e) => {
+    console.log('registering isAdmin:', isAdmin);
     e.preventDefault();
     setError(''); // Clear any previous errors
-
     try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+      const response = await register(name, email, password, isAdmin);
 
       if (response.ok) {
-        const data = await response.json();
-        alert('Registration successful!');
+        alert(isAdmin ? 'Admin registration successful!' : 'Registration successful!');
         navigate('/login'); // Redirect to login page after successful registration
       } else {
         const { message } = await response.json();
@@ -87,8 +85,22 @@ const Register = () => {
               />
             </div>
           </div>
+          <div className="form-group admin-toggle">
+            <input
+              type="checkbox"
+              id="adminCheckbox"
+              checked={isAdmin}
+              onChange={(e) => setIsAdmin(e.target.checked)}
+              className="form-checkbox"
+            />
+            <label htmlFor="adminCheckbox">
+              <Shield size={18} className="text-gray-400" />
+              Register as Admin
+            </label>
+          </div>
+
           <button type="submit" className="auth-button">
-            Create Account
+            {isAdmin ? 'Create Admin Account' : 'Create Account'}
           </button>
         </form>
         <div className="auth-links">

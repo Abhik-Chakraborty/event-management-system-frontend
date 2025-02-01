@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }) => {
     navigate('/');
   };
   // Register function
-  const register = async (name, email, password) => {
+  const register = async (name, email, password, isAdmin) => {
     try {
-      const data = await registerUser(name, email, password); // Call the backend API to register the user
+      const data = await registerUser(name, email, password, isAdmin); // Call the backend API to register the user
       setUser(data.user); // Set the registered user in the context
       localStorage.setItem('user', JSON.stringify(data.user));
       localStorage.setItem('token', data.token);
