@@ -9,12 +9,22 @@ const EventList = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const isAdmin = user && user.role === 'admin';
+  const [userRSVPs, setUserRSVPs] = useState(new Set());
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const data = await getEvents();
         setEvents(data);
+        // Create a set of event IDs the user has RSVP'd to
+        if (user) {
+          const userRSVPSet = new Set(
+            data.filter(event => 
+              event.attendees.some(attendee => attendee._id === user.id)
+            ).map(event => event._id)
+          );
+          setUserRSVPs(userRSVPSet);
+        }
       } catch (error) {
         console.error('Failed to fetch events:', error);
       } finally {
@@ -22,15 +32,32 @@ const EventList = () => {
       }
     };
     fetchEvents();
-  }, []);
+  }, [user]);
 
   const handleRSVP = async (eventId) => {
     if (!user) {
-      alert('Please log in to Reserve your spot');
+      alert('Please log in to RSVP');
       return;
     }
-    await rsvpEvent(eventId);
-    alert('Reservation Confirmed');
+
+    if (userRSVPs.has(eventId)) {
+      alert("You're already registered for this event!");
+      return;
+    }
+
+    try {
+      await rsvpEvent(eventId);
+      setUserRSVPs(prev => new Set([...prev, eventId]));
+      // Update attendee count in events state
+      setEvents(events.map(event => 
+        event._id === eventId 
+          ? { ...event, attendees: [...event.attendees, user] }
+          : event
+      ));
+      alert('RSVP Successful!');
+    } catch (err) {
+      alert('Failed to RSVP');
+    }
   };
 
   const handleDelete = async (id) => {
@@ -98,15 +125,24 @@ const EventList = () => {
                     <Users size={16} />
                     <span>{event.capacity} spots available</span>
                   </div>
+                  <div className="flex items-center text-gray-600">
+                    <Users size={16} className="mr-2" />
+                    <span>{event.attendees.length} attending</span>
+                  </div>
                 </div>
 
                 <div className="event-actions">
                   <button
                     onClick={() => handleRSVP(event._id)}
-                    className="rsvp-button"
+                    className={`flex items-center px-4 py-2 rounded-md ${
+                      userRSVPs.has(event._id)
+                        ? 'bg-green-500 cursor-not-allowed'
+                        : 'bg-blue-500 hover:bg-blue-600'
+                    } text-white transition-colors duration-300`}
+                    disabled={userRSVPs.has(event._id)}
                   >
-                    <Check size={16} />
-                    I'm Interested
+                    <Check size={16} className="mr-2" />
+                    {userRSVPs.has(event._id) ? "You're Going!" : "I'm Interested"}
                   </button>
                   
                   {isAdmin && (
