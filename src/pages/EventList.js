@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getEvents, rsvpEvent, deleteEvent } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { Calendar, MapPin, Clock, Users, Trash2, Check } from 'lucide-react';
+import { Calendar, MapPin, Clock, Users, Trash2, Check, Loader } from 'lucide-react';
+import '../App.css';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -25,11 +26,11 @@ const EventList = () => {
 
   const handleRSVP = async (eventId) => {
     if (!user) {
-      alert('Please log in to RSVP');
+      alert('Please log in to Reserve your spot');
       return;
     }
     await rsvpEvent(eventId);
-    alert('RSVP Successful');
+    alert('Reservation Confirmed');
   };
 
   const handleDelete = async (id) => {
@@ -43,66 +44,77 @@ const EventList = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="event-loading">
+        <Loader className="animate-spin" size={32} />
+        <p>Loading events...</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Upcoming Events</h1>
+    <div className="event-list-container">
+      <div className="event-list-header">
+        <h1>Upcoming Events</h1>
+        <p className="event-subtitle">Discover and join amazing events</p>
+      </div>
+
       {events.length === 0 ? (
-        <div className="text-center text-gray-600">No events found</div>
+        <div className="no-events">
+          <Calendar size={48} />
+          <p>No events found</p>
+          <span>Check back later for upcoming events</span>
+        </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="events-grid">
           {events.map((event) => (
-            <div key={event._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div key={event._id} className="event-card">
               {event.image && (
-                <img 
-                  src={event.image} 
-                  alt={event.title}
-                  className="w-full h-48 object-cover"
-                />
+                <div className="event-image-container">
+                  <img 
+                    src={event.image} 
+                    alt={event.title}
+                    className="event-image"
+                  />
+                </div>
               )}
-              <div className="p-6">
-                <h2 className="text-xl font-semibold mb-3 text-gray-800">{event.title}</h2>
-                <p className="text-gray-600 mb-4">{event.description}</p>
+              <div className="event-content">
+                <h2 className="event-title">{event.title}</h2>
+                <p className="event-description">{event.description}</p>
                 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-gray-600">
-                    <Calendar size={16} className="mr-2" />
+                <div className="event-details">
+                  <div className="event-detail">
+                    <Calendar size={16} />
                     <span>{new Date(event.date).toLocaleDateString()}</span>
                   </div>
-                  <div className="flex items-center text-gray-600">
-                    <Clock size={16} className="mr-2" />
+                  <div className="event-detail">
+                    <Clock size={16} />
                     <span>{event.time}</span>
                   </div>
-                  <div className="flex items-center text-gray-600">
-                    <MapPin size={16} className="mr-2" />
+                  <div className="event-detail">
+                    <MapPin size={16} />
                     <span>{event.location}</span>
                   </div>
-                  <div className="flex items-center text-gray-600">
-                    <Users size={16} className="mr-2" />
+                  <div className="event-detail">
+                    <Users size={16} />
                     <span>{event.capacity} spots available</span>
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center mt-4">
+                <div className="event-actions">
                   <button
                     onClick={() => handleRSVP(event._id)}
-                    className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+                    className="rsvp-button"
                   >
-                    <Check size={16} className="mr-2" />
-                    RSVP
+                    <Check size={16} />
+                    I'm Interested
                   </button>
                   
                   {isAdmin && (
                     <button
                       onClick={() => handleDelete(event._id)}
-                      className="flex items-center px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors duration-300"
+                      className="delete-button"
                     >
-                      <Trash2 size={16} className="mr-2" />
+                      <Trash2 size={16} />
                       Delete
                     </button>
                   )}
