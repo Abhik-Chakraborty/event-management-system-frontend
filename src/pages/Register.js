@@ -85,7 +85,7 @@ const Register = () => {
               />
             </div>
           </div>
-          <div className="form-group admin-toggle">
+          {/* <div className="form-group admin-toggle">
             <input
               type="checkbox"
               id="adminCheckbox"
@@ -97,7 +97,7 @@ const Register = () => {
               <Shield size={18} className="text-gray-400" />
               Register as Admin
             </label>
-          </div>
+          </div> */}
 
           <button type="submit" className="auth-button">
             {isAdmin ? 'Create Admin Account' : 'Create Account'}
