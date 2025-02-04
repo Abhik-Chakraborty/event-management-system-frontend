@@ -859,3 +859,51 @@ input:hover, textarea:hover {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+/* Hamburger Menu */
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: var(--card-background);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 100;
+}
+
+.hamburger-dropdown .button-link {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.hamburger-dropdown .button-link:hover {
+  background: var(--primary-hover);
+}
+
+/* Show Hamburger on Mobile */
+@media (max-width: 768px) {
+  .nav-left, .nav-right {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+}
