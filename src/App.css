@@ -907,15 +907,19 @@ input:hover, textarea:hover {
 
 .hamburger-dropdown {
   position: absolute;
-  top: 60px;
-  right: 10px;
+  top: 60px; /* Adjusted to appear below the hamburger button */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
   background: var(--card-background);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 12px;
+  width: 250px; /* Adjust width for consistency */
   z-index: 100;
+  gap: 10px;
+  text-align: center;
 }
 
 .hamburger-dropdown .button-link {
