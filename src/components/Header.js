@@ -18,6 +18,9 @@ const Header = () => {
       <nav>
         <div className="nav-left">
           <Link className="button-link" to="/">Events</Link>
+          <button className="info-icon" onClick={() => setShowInfo(true)}>
+            <Info size={24} />
+          </button>
           {user && <Link className="button-link" to="/create-event">Create Event</Link>}
         </div>
 

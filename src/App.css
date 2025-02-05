@@ -576,19 +576,45 @@ input:hover, textarea:hover {
 }
 
 /* Info Modal Styles */
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  background: none;
+}
+
+.info-icon:hover {
+  color: var(--link-hover);
+}
 .info-button {
   background: none;
   border: none;
   color: var(--text-secondary);
   cursor: pointer;
   padding: 0.5rem;
-  transition: color 0.2s ease;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .info-button:hover {
-  color: var(--primary-color);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
+.info-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Info Modal Styles */
 .info-modal-backdrop {
   position: fixed;
   top: 0;
@@ -610,12 +636,9 @@ input:hover, textarea:hover {
   width: 90%;
   max-width: 500px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-  animation: fadeInScale 0.3s ease-out;
+  animation: modalFadeIn 0.3s ease-out;
   z-index: 1100;
 }
 
@@ -673,6 +696,17 @@ input:hover, textarea:hover {
 
 .close-modal:hover {
   background: var(--primary-hover);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 /* Card Styles */
@@ -860,7 +894,6 @@ input:hover, textarea:hover {
   }
 }
 /* Hamburger Menu */
-/* Hamburger Menu */
 .hamburger-menu {
   display: none;
 }
@@ -905,5 +938,55 @@ input:hover, textarea:hover {
 
   .hamburger-menu {
     display: block;
+    position: relative;
+  }
+  .hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .hamburger-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--card-background);
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
+
+  .hamburger-dropdown .button-link {
+  flex: 1; /* Ensure equal width for all buttons */
+  text-align: center;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: background 0.2s ease-in-out;
+  min-width: 100px; /* Ensures equal width for all buttons */
+  }
+
+  .hamburger-dropdown .button-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Modal Animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
