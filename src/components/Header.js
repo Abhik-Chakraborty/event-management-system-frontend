@@ -67,6 +67,20 @@ const Header = () => {
                   Logout
                 </button>
               )}
+              {!user && (
+                <>
+                  {isLoginPage ? (
+                    <Link className="button-link" to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+                  ) : isRegisterPage ? (
+                    <Link className="button-link" to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                  ) : (
+                    <>
+                      <Link className="button-link" to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                      <Link className="button-link" to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+                    </>
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>
