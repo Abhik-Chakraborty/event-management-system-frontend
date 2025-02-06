@@ -139,6 +139,7 @@ nav {
   margin-bottom: 1.25rem;
   position: relative;
   animation: slideRight 0.5s ease-out;
+  width: 100%;
 }
 
 .form-group label {
@@ -165,6 +166,7 @@ input, textarea {
   color: var(--text-primary);
   font-size: 1rem;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 input:focus, textarea:focus {
@@ -226,6 +228,7 @@ input:hover, textarea:hover {
   transform: translateY(0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideUp 0.5s ease-out;
+  box-sizing: border-box;
 }
 
 .auth-card:hover {
@@ -248,6 +251,7 @@ input:hover, textarea:hover {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  width: 100%;
 }
 
 .auth-button {
@@ -301,6 +305,7 @@ input:hover, textarea:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   animation: fadeScale 0.5s ease-out;
+  box-sizing: border-box;
 }
 
 .create-event-header {
@@ -334,6 +339,10 @@ input:hover, textarea:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
+  width: 100%;
+}
+.create-event-grid .form-group {
+  margin: 0;
 }
 
 .create-event-grid .full-width {
