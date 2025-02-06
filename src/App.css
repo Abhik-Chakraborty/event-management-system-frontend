@@ -139,6 +139,8 @@ nav {
   margin-bottom: 1.25rem;
   position: relative;
   animation: slideRight 0.5s ease-out;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group label {
@@ -205,27 +207,29 @@ input:hover, textarea:hover {
 
 /* Authentication Pages */
 .auth-container {
-  min-height: calc(100vh - 5rem);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
   background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%),
               radial-gradient(circle at bottom left, rgba(29, 78, 216, 0.1), transparent 40%);
+  box-sizing: border-box;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
   background: rgba(31, 41, 55, 0.8);
   backdrop-filter: blur(10px);
-  padding: 2.5rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transform: translateY(0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: slideUp 0.5s ease-out;
+  box-sizing: border-box;
 }
 
 .auth-card:hover {
@@ -248,6 +252,9 @@ input:hover, textarea:hover {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  box-sizing: border-box;
 }
 
 .auth-button {
@@ -591,37 +598,27 @@ input:hover, textarea:hover {
   color: var(--link-hover);
 }
 .info-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
+  background: none;
   border: none;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 0.5rem;
-  color: #ffffff;
-  opacity: 0.8;
+  border-radius: 0.5rem;
   transition: all 0.2s ease;
-  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .info-button:hover {
-  opacity: 1;
-  transform: scale(1.1);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
-/* Show info button in both mobile and desktop */
-@media (min-width: 768px) {
-  .info-button {
-    display: flex;
-    position: relative;
-  }
-}
-
-@media (max-width: 767px) {
-  .info-button {
-    display: flex;
-    margin: 0.5rem auto;
-  }
+.info-button svg {
+  width: 20px;
+  height: 20px;
 }
 
 /* Info Modal Styles */
@@ -864,6 +861,8 @@ input:hover, textarea:hover {
 
   .auth-card {
     padding: 1.5rem;
+    width: 95%;
+    margin: 0.5rem;
   }
 
   .auth-title {
@@ -881,6 +880,27 @@ input:hover, textarea:hover {
   .modal {
     width: 95%;
     padding: 1rem;
+  }
+
+  .form-group input {
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .auth-form {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-group input {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
   }
 }
 
@@ -917,65 +937,31 @@ input:hover, textarea:hover {
 
 .hamburger-dropdown {
   position: absolute;
-  top: 60px;
-  right: 10px;
-  width: 250px;
+  top: 60px; /* Adjusted to appear below the hamburger button */
+  left: 50%;
+  transform: translateX(-50%); /* Center horizontally */
   background: var(--card-background);
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.hamburger-dropdown .admin-tag {
-  text-align: center;
-  padding: 8px;
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--primary-color);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.hamburger-dropdown .welcome-text {
-  text-align: center;
-  color: var(--text-secondary);
-  padding: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.hamburger-dropdown .button-link,
-.hamburger-dropdown .logout-button {
-  width: 100%;
   padding: 12px;
+  width: 250px; /* Adjust width for consistency */
+  z-index: 100;
+  gap: 10px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+}
+
+.hamburger-dropdown .button-link {
+  display: block;
+  padding: 10px;
+  text-align: center;
   color: var(--text-primary);
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
+  text-decoration: none;
 }
 
-.hamburger-dropdown .button-link:hover,
-.hamburger-dropdown .logout-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
-}
-
-.hamburger-dropdown .logout-button {
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
-  margin-top: 0.5rem;
-}
-
-.hamburger-dropdown .logout-button:hover {
-  background: rgba(239, 68, 68, 0.2);
+.hamburger-dropdown .button-link:hover {
+  background: var(--primary-hover);
 }
 
 /* Show Hamburger on Mobile */
@@ -1037,4 +1023,19 @@ input:hover, textarea:hover {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+/* Additional Styles */
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.relative {
+  position: relative;
+  width: 100%;
 }
