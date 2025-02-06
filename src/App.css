@@ -299,15 +299,13 @@ input:hover, textarea:hover {
 }
 
 .create-event-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2.5rem;
+  background: var(--card-background);
+  border-radius: 1rem;
+  padding: 2rem;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  animation: fadeScale 0.5s ease-out;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
 }
 
 .create-event-header {
@@ -341,6 +339,7 @@ input:hover, textarea:hover {
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-bottom: 2rem;
+  box-sizing: border-box;
 }
 
 .create-event-grid .full-width {
@@ -890,6 +889,20 @@ input:hover, textarea:hover {
   .auth-form {
     margin-top: 1rem;
   }
+
+  .create-event-card {
+    padding: 1.25rem;
+    margin: 1rem;
+  }
+
+  .create-event-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1038,4 +1051,26 @@ input:hover, textarea:hover {
 .relative {
   position: relative;
   width: 100%;
+}
+
+.create-event-form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  min-height: 120px;
+  max-height: 300px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.95rem;
 }
