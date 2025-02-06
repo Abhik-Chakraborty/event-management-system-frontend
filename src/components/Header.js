@@ -54,10 +54,19 @@ const Header = () => {
           
           {menuOpen && (
             <div className="hamburger-dropdown">
+              {user && <span className="welcome-text">Welcome, {user.name}</span>}
+              {user?.role === 'admin' && <div className="admin-tag">Admin</div>}
               <Link className="button-link" to="/" onClick={() => setMenuOpen(false)}>Events</Link>
+              {user && <Link className="button-link" to="/create-event" onClick={() => setMenuOpen(false)}>Create Event</Link>}
               <button onClick={() => setShowInfo(true)} className="button-link">Info</button>
-              <Link className="button-link" to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-              <Link className="button-link" to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              {user && (
+                <button onClick={() => {
+                  logout();
+                  setMenuOpen(false);
+                }} className="logout-button">
+                  Logout
+                </button>
+              )}
             </div>
           )}
         </div>
